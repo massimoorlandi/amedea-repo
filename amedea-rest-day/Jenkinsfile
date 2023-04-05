@@ -6,6 +6,10 @@ pipeline {
         }
 	}	
 	parameters	{
+		string(name: 'AMEDEA_DB_URL',
+		defaultValue: 'jdbc:oracle:thin:@//172.19.0.128:1521/BIRDTST')
+		string(name: 'AMEDEA_DB_PORT',
+		defaultValue: '8083')
 		password(name: 'AMEDEA_DB_PASSWORD',
 			defaultValue: 'Password123')
     }
