@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'maven:3.8.3-openjdk-17' 
+			image 'node:16.13.1-alpine'
             args '-v /root/.m2:/root/.m2' 
         }
     }
@@ -15,6 +16,11 @@ pipeline {
         stage('Build') { 
             steps {
                 sh 'mvn -U -X --file ./amedea-rest-parent  -DSERVICE_NAME=amedea-rest-day -DskipTests -Pprod clean install' 
+            }
+        }
+		stage('Test-docker') {
+            steps {
+                sh 'node --version'
             }
         }
     }
