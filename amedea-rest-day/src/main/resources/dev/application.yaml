@@ -1,0 +1,57 @@
+spring:
+  profiles:
+   active: dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+      
+  jpa:
+    hibernate.ddl-auto: none
+    #database-platform: org.hibernate.dialect.Oracle10gDialect    
+  datasource:
+    hikari:
+      jdbc-url: ${AMEDEA_DB_URL}
+      username: ${AMEDEA_DB_USERNAME}
+      password: ${AMEDEA_DB_PASSWORD}
+      driverClassName: ${AMEDEA_DB_DRIVER}
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idleTimeout: 30000
+      maxLifetime: 2000000
+      connectionTimeout: 30000
+      #poolName: ""
+
+server:
+  port: ${AMEDEA_DB_PORT}
+  servlet.context-path: /fastpoint
+logging.level:
+#  '[it.amedea]': info
+  web: info #QUESTO POSSO ANCHE TOGLIERLO DOPO
+  #org.springframework.jdbc.datasource.init.ScriptUtils: debug      
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
+      
+ 
+ 
+---
+
+
+

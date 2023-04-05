@@ -1,0 +1,1 @@
+"# amedea-rest-common" 

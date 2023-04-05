@@ -1,0 +1,16 @@
+pipeline {
+    agent {
+        docker {
+            image 'maven:3.8.3-openjdk-17' 
+            args '-v /root/.m2:/root/.m2' 
+        }
+    }
+    stages {
+        stage('Build') { 
+            steps {
+				sh 'java -version'	
+                sh 'mvn -U -X --file ./amedea-rest-parent  -DSERVICE_NAME=amedea-rest-day -DskipTests -Pprod clean' 
+            }
+        }
+    }
+}
